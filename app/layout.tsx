@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import TanstackQueryProvider from "@/providers/TanstackQueryProvider";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,11 +42,11 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased bg-slate-50 text-slate-900 min-h-screen flex flex-col`}>
         <Analytics />
         <TanstackQueryProvider>
-          {/* We will inject a global Navbar here later */}
-          <main className="flex-grow">
+          <Navbar />
+          <main className="flex-grow flex flex-col">
             {children}
           </main>
-          {/* We will inject a global Footer here later */}
+          <Footer />
         </TanstackQueryProvider>
       </body>
     </html>
