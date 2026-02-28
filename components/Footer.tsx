@@ -22,7 +22,7 @@ export function Footer() {
                     <div className="flex items-center justify-center gap-2 mt-4 sm:mt-0">
                         <FedhaHubLogo className="w-5 h-5" />
                         <p className="text-sm text-slate-500 text-center">
-                            &copy; {currentYear} FedhaHub. Built by Corban Technologies LTD.
+                            &copy; {currentYear} FedhaHub. Built by <Link href="https://corbantechnologies.org" className="hover:text-emerald-700 transition-colors">Corban Technologies LTD.</Link>
                         </p>
                     </div>
                 </div>
