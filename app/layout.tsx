@@ -15,6 +15,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fedhahub.co.ke"),
+  other: {
+    "google-adsense-account": "ca-pub-7368601299278605",
+  },
   title: {
     template: "%s | FedhaHub Kenya",
     default: "FedhaHub Kenya | Free 2026 Financial & Tax Calculators",
