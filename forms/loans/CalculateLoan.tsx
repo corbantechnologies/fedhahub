@@ -5,9 +5,10 @@ import { useForm, Controller } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { calculateLoan, Loan, LoanPayload } from "@/services/loans";
 import CalculatorLayout from "@/app/calculator-layout";
-import { Loader2, Landmark, ChevronDown, Check, ChevronUp } from "lucide-react";
+import { Loader2, Landmark, ChevronDown, Check, ChevronUp, X } from "lucide-react";
 import * as Label from "@radix-ui/react-label";
 import * as Select from "@radix-ui/react-select";
+import * as Accordion from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
 
 type FormValues = {
@@ -297,8 +298,37 @@ export default function CalculateLoan() {
                         </div>
                     ))}
                     {result.schedule.length > 3 && (
-                        <div className="text-center text-xs text-slate-500 py-2 italic font-mono">
-                            + {result.schedule.length - 3} more months...
+                        <div className="mt-4 border-t border-slate-800/50 pt-4">
+                            <Accordion.Root type="single" collapsible className="w-full">
+                                <Accordion.Item value="full-schedule" className="border-none">
+                                    <Accordion.Header className="flex">
+                                        <Accordion.Trigger className="flex flex-1 items-center justify-center gap-2 py-3 px-4 text-xs font-semibold text-emerald-400 bg-slate-800/30 hover:bg-slate-800/70 rounded-md transition-all [&[data-state=open]>svg]:rotate-180">
+                                            View Full Schedule ({result.schedule.length} months)
+                                            <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+                                        </Accordion.Trigger>
+                                    </Accordion.Header>
+                                    <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                                        <div className="pt-4 space-y-2">
+                                            {result.schedule.slice(3).map((item, i) => (
+                                                <div key={i + 3} className="bg-slate-800/30 p-3 rounded-md border border-slate-700/50 text-xs font-mono flex flex-col gap-1">
+                                                    <div className="flex justify-between text-emerald-400 pb-1 border-b border-slate-700/50">
+                                                        <span>{item.due_date}</span>
+                                                        <span>Pill: {formatCurrency(item.total_due)}</span>
+                                                    </div>
+                                                    <div className="flex justify-between text-slate-400 mt-1">
+                                                        <span>Principal: {formatCurrency(item.principal_due)}</span>
+                                                        <span>Interest: {formatCurrency(item.interest_due)}</span>
+                                                    </div>
+                                                    <div className="flex justify-between text-slate-300 pt-1">
+                                                        <span>Balance</span>
+                                                        <span>{formatCurrency(item.balance_after)}</span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </Accordion.Content>
+                                </Accordion.Item>
+                            </Accordion.Root>
                         </div>
                     )}
                 </div>
