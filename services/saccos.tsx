@@ -36,7 +36,7 @@ interface SaccoDividendsPayload {
 }
 
 export const generateSaccoDividends = async (payload: SaccoDividendsPayload) => {
-    const response: AxiosResponse<SaccoDividends> = await apiActions.post("api/v1/saccos/calculate-dividends/", payload);
+    const response: AxiosResponse<SaccoDividends> = await apiActions.post("api/v1/saccos/calculate/dividends/", payload);
     return response.data;
 }
 
