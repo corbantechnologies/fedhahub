@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-// Optional: Good for a clean, professional financial look
 import { Inter } from "next/font/google";
+import Script from "next/script"; // 1. Import the Next.js Script component
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import TanstackQueryProvider from "@/providers/TanstackQueryProvider";
@@ -9,16 +9,14 @@ import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Controls the mobile browser top-bar color
 export const viewport: Viewport = {
-  themeColor: "#0F172A", // Deep Navy branding
+  themeColor: "#0F172A",
 };
 
-// Centralized SEO Engine
 export const metadata: Metadata = {
   metadataBase: new URL("https://fedhahub.co.ke"),
   title: {
-    template: "%s | FedhaHub Kenya", // Pages will show "SACCO Calculator | FedhaHub Kenya"
+    template: "%s | FedhaHub Kenya",
     default: "FedhaHub Kenya | Free 2026 Financial & Tax Calculators",
   },
   description: "Accurate, up-to-date 2026 Kenyan PAYE, SHIF, Housing Levy, SACCO dividends, and loan calculators.",
@@ -49,7 +47,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FedhaHub Kenya",
     description: "Free 2026 Kenyan Tax and SACCO calculators.",
-    // No @handles needed. This just ensures the link looks great when shared.
   },
   robots: {
     index: true,
@@ -71,6 +68,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-slate-50 text-slate-900">
+      <head>
+        {/* 2. Replace <script> with Next.js <Script> and use crossOrigin */}
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7368601299278605"
+        />
+      </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-slate-50 text-slate-900`}>
         <Analytics />
         <TanstackQueryProvider>
