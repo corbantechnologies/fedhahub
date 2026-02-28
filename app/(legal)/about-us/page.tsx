@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import FedhaHubLogo from "@/components/FedhaHubLogo";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 export default function AboutUsPage() {
     return (
         <>
-            <h1>About Us</h1>
+            <div className="flex items-center gap-4 border-b border-slate-100 pb-6 mb-8 mt-2">
+                <FedhaHubLogo className="w-12 h-12 shrink-0" />
+                <h1 className="!mb-0 text-slate-900">About Us</h1>
+            </div>
 
             <h3>The Mission</h3>
             <p>

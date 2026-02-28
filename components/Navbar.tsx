@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import FedhaHubLogo from "@/components/FedhaHubLogo";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +20,7 @@ export function Navbar() {
             <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center">
                     <Link href="/" className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
-                        <span className="bg-emerald-600 text-white p-1 rounded-md">FH</span>
+                        <FedhaHubLogo className="w-8 h-8" />
                         FedhaHub
                     </Link>
                 </div>

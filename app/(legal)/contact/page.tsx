@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2, Mail, MapPin, Send } from "lucide-react";
 import * as Label from "@radix-ui/react-label";
+import FedhaHubLogo from "@/components/FedhaHubLogo";
 
 type ContactFormValues = {
     userName: string;
@@ -59,7 +60,10 @@ export default function ContactUsPage() {
                     {/* Top Section: Company Details */}
                     <div className="p-8 sm:p-12 bg-slate-900 text-white flex flex-col justify-between">
                         <div>
-                            <h2 className="text-2xl font-semibold mb-6 text-white">Get in Touch</h2>
+                            <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-3">
+                                <FedhaHubLogo className="w-8 h-8" />
+                                Get in Touch
+                            </h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div className="flex flex-col">
                                     <span className="text-slate-400 text-sm font-medium tracking-wider uppercase mb-1">Developed By</span>

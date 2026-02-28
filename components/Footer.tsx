@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FedhaHubLogo from "@/components/FedhaHubLogo";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -18,9 +19,12 @@ export function Footer() {
                             Contact
                         </Link>
                     </div>
-                    <p className="text-sm text-slate-500 mt-4 sm:mt-0 text-center">
-                        &copy; {currentYear} FedhaHub. Built by Corban Technologies LTD.
-                    </p>
+                    <div className="flex items-center justify-center gap-2 mt-4 sm:mt-0">
+                        <FedhaHubLogo className="w-5 h-5" />
+                        <p className="text-sm text-slate-500 text-center">
+                            &copy; {currentYear} FedhaHub. Built by Corban Technologies LTD.
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
