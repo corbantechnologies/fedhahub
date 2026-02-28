@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ContactNotificationTemplate } from "@/components/templates/contact-notification-template";
 import { ContactTemplate } from "@/components/templates/contact-template";
 import { Resend } from "resend";
+import * as React from "react";
 
 export async function POST(req: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
         userName,
         userEmail: email,
         message,
-      }),
+      }) as React.ReactElement,
     });
 
     // 2. Send acknowledgement to User
@@ -47,7 +48,7 @@ export async function POST(req: Request) {
         subject: `We've received your message, ${userName}`,
         react: ContactTemplate({
           userName,
-        }),
+        }) as React.ReactElement,
       });
     }
 
