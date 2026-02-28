@@ -23,7 +23,7 @@ export default function CalculatorLayout({
     faqs,
 }: CalculatorLayoutProps) {
     return (
-        <div className="w-full flex justify-center pb-16">
+        <div className="w-full flex justify-center pb-16 bg-slate-50 min-h-screen">
             <div className="w-full">
                 {/* Header */}
                 <div className="bg-slate-50 pt-16 pb-12 border-b border-slate-200">

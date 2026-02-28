@@ -70,8 +70,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased bg-slate-50 text-slate-900 min-h-screen flex flex-col`}>
+    <html lang="en" className="bg-slate-50 text-slate-900">
+      <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-slate-50 text-slate-900`}>
         <Analytics />
         <TanstackQueryProvider>
           <Navbar />
