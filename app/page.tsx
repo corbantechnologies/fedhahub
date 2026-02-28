@@ -1,65 +1,87 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Calculator, PieChart, Landmark } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="w-full flex flex-col items-center">
+      {/* Hero Section */}
+      <section className="w-full bg-slate-900 text-white py-24 sm:py-32 relative overflow-hidden">
+        {/* Decorative background gradient */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-b from-emerald-500/10 to-transparent blur-3xl opacity-50 transform rotate-12" />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl relative z-10">
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
+            Smart Financial Tools for <span className="text-emerald-400">Kenyans</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+            Accurate, up-to-date 2026 tax brackets, SACCO dividend projections, and loan calculators. Make informed financial decisions instantly.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/paye-2026"
+              className="w-full sm:w-auto inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-lg font-medium transition-colors shadow-lg shadow-emerald-900/20"
+            >
+              Calculate 2026 PAYE
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+            <Link
+              href="/sacco-dividends"
+              className="w-full sm:w-auto inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white px-8 py-3.5 rounded-lg font-medium transition-colors ring-1 ring-slate-700"
+            >
+              SACCO Dividends
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Features/Cards Section */}
+      <section className="w-full py-20 bg-slate-50 flex-grow">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Everything you need in one place</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+              Our calculators are built with the latest 2026 guidelines, ensuring you get the most accurate deductions and financial projections.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <Link href="/paye-2026" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
+              <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
+                <Calculator className="h-7 w-7 text-emerald-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">2026 NET PAY / PAYE</h3>
+              <p className="text-slate-500 leading-relaxed">
+                Calculate your take-home pay including SHIF, Housing Levy, NSSF, and standard PAYE tax bands automatically.
+              </p>
+            </Link>
+
+            {/* Feature 2 */}
+            <Link href="/sacco-dividends" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
+              <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
+                <PieChart className="h-7 w-7 text-emerald-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">SACCO Dividends</h3>
+              <p className="text-slate-500 leading-relaxed">
+                Project your annual returns based on share capital and deposits with weighted average calculations.
+              </p>
+            </Link>
+
+            {/* Feature 3 */}
+            <Link href="/loan-calculator" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
+              <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
+                <Landmark className="h-7 w-7 text-emerald-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">Loan Calculator</h3>
+              <p className="text-slate-500 leading-relaxed">
+                Compare reducing balance vs flat rate loans. Generate complete amortization schedules instantly.
+              </p>
+            </Link>
+          </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 }
