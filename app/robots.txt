@@ -1,0 +1,13 @@
+import { MetadataRoute } from 'next';
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      // Disallow any private API routes or admin areas if you add them later
+      disallow: ['/api/', '/admin/'], 
+    },
+    sitemap: 'https://fedhahub.co.ke/sitemap.xml',
+  };
+}

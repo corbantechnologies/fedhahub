@@ -10,7 +10,7 @@ export function Navbar() {
     const [open, setOpen] = React.useState(false);
 
     const links = [
-        { href: "/paye-2026", label: "PAYE 2026" },
+        { href: "/paye", label: "PAYE 2026" },
         { href: "/sacco-dividends", label: "SACCO Dividends" },
         { href: "/loan-calculator", label: "Loan Calculator" },
     ];

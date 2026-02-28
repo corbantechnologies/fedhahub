@@ -20,7 +20,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/paye-2026"
+              href="/paye"
               className="w-full sm:w-auto inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-lg font-medium transition-colors shadow-lg shadow-emerald-900/20"
             >
               Calculate 2026 PAYE
@@ -48,7 +48,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <Link href="/paye-2026" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
+            <Link href="/paye" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
               <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
                 <Calculator className="h-7 w-7 text-emerald-600" />
               </div>
