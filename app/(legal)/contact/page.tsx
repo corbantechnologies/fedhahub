@@ -46,7 +46,7 @@ export default function ContactUsPage() {
 
     return (
         <div className="w-full min-h-[calc(100vh-140px)] bg-slate-50 py-16">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-slate-900 tracking-tight sm:text-5xl">Contact Us</h1>
                     <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
@@ -54,13 +54,13 @@ export default function ContactUsPage() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
 
-                    {/* Left Column: Company Details */}
+                    {/* Top Section: Company Details */}
                     <div className="p-8 sm:p-12 bg-slate-900 text-white flex flex-col justify-between">
                         <div>
-                            <h2 className="text-2xl font-semibold text-emerald-400 mb-6">Get in Touch</h2>
-                            <div className="space-y-6">
+                            <h2 className="text-2xl font-semibold mb-6 text-white">Get in Touch</h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div className="flex flex-col">
                                     <span className="text-slate-400 text-sm font-medium tracking-wider uppercase mb-1">Developed By</span>
                                     <span className="text-lg font-medium">Corban Technologies LTD</span>
@@ -76,7 +76,7 @@ export default function ContactUsPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-4">
+                                <div className="flex items-start gap-4 sm:col-span-2">
                                     <div className="bg-slate-800 p-2 rounded-md shrink-0">
                                         <Mail className="h-5 w-5 text-emerald-400" />
                                     </div>
@@ -88,7 +88,7 @@ export default function ContactUsPage() {
                             </div>
                         </div>
 
-                        <div className="mt-12 bg-slate-800/50 p-6 rounded-xl border border-slate-800">
+                        <div className="mt-8 bg-slate-800/50 p-6 rounded-xl border border-slate-800">
                             <h3 className="font-medium text-emerald-400 mb-2">Response Time</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
                                 We aim to respond to all technical inquiries and partnership requests within 48 hours.
@@ -96,7 +96,7 @@ export default function ContactUsPage() {
                         </div>
                     </div>
 
-                    {/* Right Column: Contact Form */}
+                    {/* Bottom Section: Contact Form */}
                     <div className="p-8 sm:p-12 flex flex-col justify-center">
                         <h3 className="text-2xl font-bold text-slate-900 mb-6">Send us a Message</h3>
 
