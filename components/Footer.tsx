@@ -9,6 +9,9 @@ export function Footer() {
             <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-500">
+                        <Link href="/news" className="hover:text-emerald-700 transition-colors font-medium text-slate-600">
+                            News & Insights
+                        </Link>
                         <Link href="/privacy-policy" className="hover:text-emerald-700 transition-colors">
                             Privacy Policy
                         </Link>

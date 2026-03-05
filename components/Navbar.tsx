@@ -13,6 +13,7 @@ export function Navbar() {
         { href: "/paye", label: "PAYE 2026" },
         { href: "/sacco-dividends", label: "SACCO Dividends" },
         { href: "/loan-calculator", label: "Loan Calculator" },
+        { href: "/news", label: "News & Insights" },
     ];
 
     return (
