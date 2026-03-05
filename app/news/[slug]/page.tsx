@@ -37,24 +37,28 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
     );
   }
 
-  const imageUrl = article.image || "https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=1600&auto=format&fit=crop";
-
   return (
     <div className="min-h-screen bg-white pb-24">
       {/* Hero Header */}
-      <div className="relative w-full h-[50vh] min-h-[400px] max-h-[600px] bg-slate-900">
-        <Image
-          src={imageUrl}
-          alt={article.title}
-          fill
-          priority
-          className="object-cover opacity-60"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+      <div className="relative w-full px-2 h-[50vh] min-h-[400px] max-h-[600px] bg-slate-900">
+        {article.image ? (
+          <>
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              priority
+              className="object-cover opacity-60"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900" />
+        )}
         
         <div className="absolute inset-0 flex flex-col justify-end">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl pb-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <Link href="/news" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back to News
             </Link>

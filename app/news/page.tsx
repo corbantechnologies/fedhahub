@@ -59,7 +59,7 @@ export default function NewsPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Content */}
         <div className="mb-12 text-center sm:text-left">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">

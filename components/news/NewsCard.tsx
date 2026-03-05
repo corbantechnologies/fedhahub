@@ -8,19 +8,22 @@ interface NewsCardProps {
 }
 
 export default function NewsCard({ article }: NewsCardProps) {
-  // Use a fallback image if none provided
-  const imageUrl = article.image || "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop";
-
   return (
     <Link href={`/news/${article.slug}`} className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-300">
-      <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
-        <Image
-          src={imageUrl}
-          alt={article.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-900 border-b border-slate-100">
+        {article.image ? (
+          <Image
+            src={article.image}
+            alt={article.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center p-6 text-center transition-transform duration-500 group-hover:scale-105">
+            <span className="text-white/30 font-bold text-3xl italic tracking-widest uppercase">FedhaHub</span>
+          </div>
+        )}
         <div className="absolute top-4 left-4">
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 shadow-sm">
             {article.category}

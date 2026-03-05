@@ -8,21 +8,24 @@ interface FeaturedArticleProps {
 }
 
 export default function FeaturedArticle({ article }: FeaturedArticleProps) {
-  // Use a fallback image if none provided
-  const imageUrl = article.image || "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1600&auto=format&fit=crop";
-
   return (
     <Link href={`/news/${article.slug}`} className="group relative block w-full rounded-3xl overflow-hidden shadow-xl mb-12 border border-slate-200 bg-slate-900">
       <div className="absolute inset-0 z-0">
-        <Image
-          src={imageUrl}
-          alt={article.title}
-          fill
-          priority
-          className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+        {article.image ? (
+          <>
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              priority
+              className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 transition-transform duration-700 group-hover:scale-105" />
+        )}
       </div>
       
       <div className="relative z-10 flex flex-col justify-end p-8 sm:p-12 min-h-[500px] sm:min-h-[600px] w-full max-w-4xl">
