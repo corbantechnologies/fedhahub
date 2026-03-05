@@ -72,7 +72,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
         )}
         
         <div className="absolute inset-0 flex flex-col justify-end">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24 sm:pt-0">
             <Link href="/news" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back to News
             </Link>
