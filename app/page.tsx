@@ -1,7 +1,16 @@
+"use client"
+
 import Link from "next/link";
-import { ArrowRight, Calculator, PieChart, Landmark } from "lucide-react";
+import { ArrowRight, Calculator, PieChart, Landmark, Newspaper } from "lucide-react";
+import NewsCard from "@/components/news/NewsCard";
+import { useFetchNews } from "@/hooks/news/actions";
 
 export default function Home() {
+  const { data: news, isLoading, isError } = useFetchNews();
+
+  // get 
+  const latestNews = news?.filter((n) => n.is_published).slice(0, 3);
+  
   return (
     <div className="w-full flex flex-col items-center">
       {/* Hero Section */}
@@ -82,6 +91,33 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Latest News Section */}
+      {latestNews && latestNews.length > 0 && (
+        <section className="w-full py-20 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div className="flex flex-col sm:flex-row items-center justify-between mb-12">
+              <div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-2">Latest News & Insights</h2>
+                <p className="text-slate-500 text-lg">Stay updated with the latest in Kenyan finance and taxation.</p>
+              </div>
+              <Link
+                href="/news"
+                className="mt-6 sm:mt-0 inline-flex items-center text-emerald-600 font-semibold hover:text-emerald-500 transition-colors"
+              >
+                View all news
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {latestNews.map((article) => (
+                <NewsCard key={article.id} article={article} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
