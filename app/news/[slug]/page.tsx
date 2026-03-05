@@ -54,26 +54,27 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="min-h-screen bg-white pb-24">
       {/* Hero Header */}
-      <div className="relative w-full px-2 h-[50vh] min-h-[400px] max-h-[600px] bg-slate-900">
-        {article.image ? (
-          <>
-            <Image
-              src={article.image}
-              alt={article.title}
-              fill
-              priority
-              className="object-cover opacity-60"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900" />
-        )}
+      <div className="relative w-full bg-slate-900 min-h-[400px] sm:min-h-[500px] flex flex-col justify-end">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {article.image ? (
+            <>
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                priority
+                className="object-cover opacity-60"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900" />
+          )}
+        </div>
         
-        <div className="absolute inset-0 flex flex-col justify-end">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24 sm:pt-0">
-            <Link href="/news" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium mb-8 transition-colors">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+          <Link href="/news" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back to News
             </Link>
             
@@ -111,7 +112,6 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
             </div>
           </div>
         </div>
-      </div>
 
       {/* Article Body */}
       <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl pt-16">
