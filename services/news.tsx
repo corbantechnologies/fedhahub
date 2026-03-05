@@ -17,6 +17,10 @@ export interface News {
     is_featured: boolean;
     is_published: boolean;
     reference: string;
+    author: string | null;
+    editor: string | null;
+    author_name: string | null;
+    editor_name: string | null;
     created_at: string;
     updated_at: string;
 }
