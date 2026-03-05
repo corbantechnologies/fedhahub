@@ -255,8 +255,8 @@ export default function CalculateLoan() {
     const resultsContent = result ? (
         <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
 
-            <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-emerald-950/20 rounded-lg border border-emerald-800 col-span-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-emerald-950/20 rounded-lg border border-emerald-800 sm:col-span-2">
                     <h3 className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">Monthly Payment</h3>
                     <p className="text-3xl font-bold font-mono text-emerald-50">{formatCurrency(result.monthly_payment)}</p>
                 </div>
@@ -271,7 +271,7 @@ export default function CalculateLoan() {
                     <p className="text-lg font-semibold font-mono text-slate-50">{result.term_months} mos</p>
                 </div>
 
-                <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700 col-span-2">
+                <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700 sm:col-span-2">
                     <h3 className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Total Repayment</h3>
                     <p className="text-xl font-semibold font-mono text-slate-50">{formatCurrency(result.total_repayment)}</p>
                 </div>

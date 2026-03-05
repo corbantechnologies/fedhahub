@@ -42,7 +42,7 @@ export const generateSaccoDividends = async (payload: SaccoDividendsPayload) => 
 
 export const getSaccos = async () => {
     const response: AxiosResponse<PaginatedResponse<Sacco>> = await apiActions.get("api/v1/saccos/sacco/");
-    return response.data;
+    return response.data.results;
 };
 
 export const getSacco = async (slug: string) => {
