@@ -46,16 +46,16 @@ export default function NewsPage() {
     );
   }
 
-  // Find the featured article (first one with is_featured = true, or default to the most recent one)
-  const featuredArticle = publishedNews.find((n) => n.is_featured) || publishedNews[0];
-  
-  // Exclude featured article from the regular grid so it's not duplicated
-  const remainingNews = publishedNews.filter((n) => n.id !== featuredArticle.id);
+  // 1. First, filter all published news by the selected category (if any)
+  const filteredNews = activeCategory
+    ? publishedNews.filter((n) => n.category === activeCategory)
+    : publishedNews;
 
-  // Apply category filtering to the remaining list
-  const displayNews = activeCategory
-    ? remainingNews.filter((n) => n.category === activeCategory)
-    : remainingNews;
+  // 2. Find the featured article for the current view (global if no category, or top of category)
+  const featuredArticle = filteredNews.find((n) => n.is_featured) || filteredNews[0];
+  
+  // 3. Exclude the featured article from the regular grid so it's not duplicated
+  const gridNews = featuredArticle ? filteredNews.filter((n) => n.id !== featuredArticle.id) : [];
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20">
@@ -70,30 +70,26 @@ export default function NewsPage() {
           </p>
         </div>
 
-        {/* Featured Article (Only show on 'All News' view) */}
-        {!activeCategory && remainingNews.length > 0 && (
-          <FeaturedArticle article={featuredArticle} />
-        )}
-        
-        {/* Category Filter */}
+        {/* Category Filter (Placed at the top so it doesn't jump during filtering) */}
         <CategoryFilter
           news={publishedNews}
           activeCategory={activeCategory}
           onSelectCategory={setActiveCategory}
         />
 
+        {/* Featured Article (Top story for the current view) */}
+        {featuredArticle && (
+          <FeaturedArticle article={featuredArticle} />
+        )}
+
         {/* News Grid */}
-        {displayNews.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {displayNews.map((article) => (
+        {gridNews.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            {gridNews.map((article) => (
               <NewsCard key={article.id} article={article} />
             ))}
           </div>
-        ) : (
-          <div className="py-20 text-center">
-            <p className="text-slate-500 text-lg">No articles found for the selected category.</p>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
