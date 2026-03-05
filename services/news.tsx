@@ -22,7 +22,7 @@ export interface News {
 }
 
 export const getNews = async () => {
-    const response: AxiosResponse<PaginatedResponse<News>> = await apiActions.get(`/api/v1/news/`);
+    const response: AxiosResponse<PaginatedResponse<News>> = await apiActions.get(`/api/v1/news/?is_published=true`);
     return response.data.results;
 }
 

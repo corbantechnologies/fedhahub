@@ -1,16 +1,18 @@
 "use client";
 
 import { use } from "react";
-import { useFetchNewsDetail } from "@/hooks/news/actions";
+import { useFetchNewsDetail, useFetchNews } from "@/hooks/news/actions";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar, Link as LinkIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import NewsCard from "@/components/news/NewsCard";
 
 export default function NewsDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const { data: article, isLoading, isError } = useFetchNewsDetail(slug);
+  const { data: allNews } = useFetchNews();
 
   if (isLoading) {
     return (
@@ -35,6 +37,18 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
     );
+  }
+
+  let relatedArticles = allNews 
+    ? allNews.filter((n) => n.category === article.category && n.id !== article.id && n.is_published)
+    : [];
+
+  // If there are less than 4 articles in the same category, pad with other latest news
+  if (relatedArticles.length < 4 && allNews) {
+    const otherNews = allNews.filter((n) => n.id !== article.id && n.is_published && !relatedArticles.some((r) => r.id === n.id));
+    relatedArticles = [...relatedArticles, ...otherNews].slice(0, 4);
+  } else {
+    relatedArticles = relatedArticles.slice(0, 4);
   }
 
   return (
@@ -125,6 +139,22 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
           </div>
         )}
       </article>
+
+      {/* Related/Other News */}
+      {relatedArticles.length > 0 && (
+        <div className="bg-slate-50 mt-20 border-t border-slate-100 py-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8 tracking-tight">
+              More News {"&"} Insights
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {relatedArticles.map((item) => (
+                <NewsCard key={item.id} article={item} />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

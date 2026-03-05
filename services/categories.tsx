@@ -19,7 +19,7 @@ export interface Category {
 
 
 export const getCategories = async () => {
-    const response: AxiosResponse<PaginatedResponse<Category>> = await apiActions.get("api/v1/news/categories/");
+    const response: AxiosResponse<PaginatedResponse<Category>> = await apiActions.get("api/v1/news/categories/?is_active=true");
     return response.data.results;
 }
 
