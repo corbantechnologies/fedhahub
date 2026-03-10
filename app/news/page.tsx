@@ -58,7 +58,7 @@ export default function NewsPage() {
   const gridNews = featuredArticle ? filteredNews.filter((n) => n.id !== featuredArticle.id) : [];
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-20">
+    <div className="min-h-screen bg-slate-50 pt-10 pb-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Content */}
         <div className="mb-12 text-center sm:text-left">
