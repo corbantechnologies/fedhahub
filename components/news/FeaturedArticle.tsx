@@ -33,12 +33,12 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-500 text-white shadow-md">
             {article.category}
           </span>
-          <span className="ml-3 inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-500 text-white shadow-md uppercase tracking-wider">
+          {/* <span className="ml-3 inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-500 text-white shadow-md uppercase tracking-wider">
             Featured
-          </span>
+          </span> */}
         </div>
         
-        <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4 leading-tight group-hover:text-emerald-300 transition-colors">
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 leading-tight group-hover:text-emerald-300 transition-colors">
           {article.title}
         </h2>
         
