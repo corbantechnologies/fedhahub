@@ -28,7 +28,7 @@ export default function FeaturedArticle({ article }: FeaturedArticleProps) {
         )}
       </div>
       
-      <div className="relative z-10 flex flex-col justify-end p-8 sm:p-8 min-h-[500px] sm:min-h-[600px] w-full max-w-4xl">
+      <div className="relative z-10 flex flex-col justify-end p-6 sm:p-10 min-h-[350px] sm:min-h-[500px] w-full max-w-4xl">
         <div className="mb-4">
           <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-500 text-white shadow-md">
             {article.category}
