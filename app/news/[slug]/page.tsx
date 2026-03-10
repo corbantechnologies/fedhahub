@@ -73,7 +73,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
           )}
         </div>
         
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-12">
           <Link href="/news" className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back to News
             </Link>
@@ -117,7 +117,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
       <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl pt-16">
         {/* Brief / Lead paragraph */}
         <div className="mb-12">
-          <p className="text-xl sm:text-2xl text-slate-600 font-medium leading-relaxed border-l-4 border-emerald-500 pl-6 italic">
+          <p className="text-xl sm:text-xl text-slate-600 font-medium leading-relaxed border-l-4 border-emerald-500 pl-6 italic">
             {article.brief}
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
       {relatedArticles.length > 0 && (
         <div className="bg-slate-50 mt-20 border-t border-slate-100 py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8 tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-8 tracking-tight">
               More News {"&"} Insights
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
