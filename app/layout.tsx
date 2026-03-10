@@ -51,6 +51,18 @@ export const metadata: Metadata = {
     title: "FedhaHub Kenya",
     description: "Free 2026 Kenyan Tax and SACCO calculators.",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "FedhaHub",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-touch-icon.png",
+  },
   robots: {
     index: true,
     follow: true,
