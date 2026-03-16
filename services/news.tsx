@@ -1,4 +1,3 @@
-"use client"
 
 import { AxiosResponse } from "axios";
 import { PaginatedResponse } from "./general";
