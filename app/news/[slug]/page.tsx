@@ -114,7 +114,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
         </div>
 
       {/* Article Body */}
-      <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl pt-16">
+      <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-16">
         {/* Brief / Lead paragraph */}
         <div className="mb-12">
           <p className="text-xl sm:text-xl text-slate-600 font-medium leading-relaxed border-l-4 border-emerald-500 pl-6 italic">
@@ -142,6 +142,21 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
               <LinkIcon className="w-4 h-4 mr-2 text-slate-500" />
               View original document
             </a>
+          </div>
+        )}
+
+        {/* Author Bio */}
+        {article.author_bio && article.author_bio.trim().length > 0 && (
+          <div className="mt-16 pt-8 border-t border-slate-200">
+            <div className="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-start gap-6">
+              <div className="bg-emerald-100 p-4 rounded-full text-emerald-600 shrink-0">
+                <User className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">About {article.author_name || 'the Author'}</h3>
+                <p className="text-slate-600 leading-relaxed">{article.author_bio}</p>
+              </div>
+            </div>
           </div>
         )}
       </article>

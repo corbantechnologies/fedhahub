@@ -19,6 +19,7 @@ export interface News {
     author: string | null;
     editor: string | null;
     author_name: string | null;
+    author_bio: string | null;
     editor_name: string | null;
     created_at: string;
     updated_at: string;
