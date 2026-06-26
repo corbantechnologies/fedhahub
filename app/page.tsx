@@ -1,125 +1,144 @@
 "use client"
 
 import Link from "next/link";
-import { ArrowRight, Calculator, PieChart, Landmark, Newspaper } from "lucide-react";
+import { ArrowRight, Calculator, PieChart, Landmark, AlertCircle, Loader2 } from "lucide-react";
 import NewsCard from "@/components/news/NewsCard";
+import FeaturedArticle from "@/components/news/FeaturedArticle";
 import { useFetchNews } from "@/hooks/news/actions";
 
 export default function Home() {
   const { data: news, isLoading, isError } = useFetchNews();
 
-  // get 
-  const latestNews = news?.filter((n) => n.is_published).slice(0, 3);
+  const publishedNews = news?.filter((n) => n.is_published) || [];
   
+  // Get featured article (first one that has is_featured, or just the first one)
+  const featuredArticle = publishedNews.find((n) => n.is_featured) || publishedNews[0];
+  
+  // Get grid news (excluding the featured one)
+  const gridNews = featuredArticle 
+    ? publishedNews.filter((n) => n.id !== featuredArticle.id).slice(0, 9) 
+    : [];
+
   return (
-    <div className="w-full flex flex-col items-center">
-      {/* Hero Section */}
-      <section className="w-full bg-slate-900 text-white py-24 sm:py-32 relative overflow-hidden">
-        {/* Decorative background gradient */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-b from-emerald-500/10 to-transparent blur-3xl opacity-50 transform rotate-12" />
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl relative z-10">
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
-            Smart Financial Tools for <span className="text-emerald-400">Kenyans</span>
+    <div className="w-full flex flex-col items-center bg-slate-50 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+        {/* Header Content */}
+        <div className="mb-10 text-center lg:text-left">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+            <span className="text-emerald-600">FedhaHub</span> Finance
           </h1>
-          <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-            Accurate, up-to-date 2026 tax brackets, SACCO dividend projections, and loan calculators. Make informed financial decisions instantly.
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0">
+            Expert insights, latest financial news, and smart tools for Kenyans.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/paye"
-              className="w-full sm:w-auto inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-lg font-medium transition-colors shadow-lg shadow-emerald-900/20"
-            >
-              Calculate 2026 PAYE
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link
-              href="/sacco-dividends"
-              className="w-full sm:w-auto inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white px-8 py-3.5 rounded-lg font-medium transition-colors ring-1 ring-slate-700"
-            >
-              SACCO Dividends
-            </Link>
-          </div>
         </div>
-      </section>
 
-      {/* Latest News Section */}
-      {latestNews && latestNews.length > 0 && (
-        <section className="w-full py-20 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div className="flex flex-col sm:flex-row items-center justify-between mb-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+          
+          {/* Main Content Area (News) */}
+          <div className="flex-1 min-w-0">
+            {/* Featured Article */}
+            {featuredArticle && (
+              <div className="mb-10">
+                <FeaturedArticle article={featuredArticle} />
+              </div>
+            )}
+
+            {/* News Grid */}
+            {gridNews.length > 0 && (
               <div>
-                <h2 className="text-3xl font-bold text-slate-900 mb-2">Latest News & Insights</h2>
-                <p className="text-slate-500 text-lg">Stay updated with the latest in Kenyan finance and taxation.</p>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-slate-900">Latest Articles</h2>
+                  <Link
+                    href="/news"
+                    className="inline-flex items-center text-emerald-600 font-semibold hover:text-emerald-500 transition-colors"
+                  >
+                    View all
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {gridNews.map((article) => (
+                    <NewsCard key={article.id} article={article} />
+                  ))}
+                </div>
               </div>
-              <Link
-                href="/news"
-                className="mt-6 sm:mt-0 inline-flex items-center text-emerald-600 font-semibold hover:text-emerald-500 transition-colors"
-              >
-                View all news
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+            )}
+            
+            {/* Loading / Empty States */}
+            {isLoading && (
+              <div className="py-20 flex flex-col items-center justify-center">
+                <Loader2 className="w-8 h-8 text-emerald-600 animate-spin mb-4" />
+                <p className="text-slate-500 font-medium">Loading latest news...</p>
+              </div>
+            )}
+            
+            {isError && (
+               <div className="py-20 flex flex-col items-center justify-center bg-red-50 rounded-2xl">
+                 <AlertCircle className="w-8 h-8 text-red-500 mb-2" />
+                 <p className="text-red-700">Failed to load news. Please try again later.</p>
+               </div>
+            )}
+          </div>
+
+          {/* Sidebar Area (Calculators & Tools) */}
+          <aside className="w-full lg:w-80 xl:w-96 shrink-0 space-y-8">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-24">
+              <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center">
+                Financial Tools
+              </h3>
+              
+              <div className="space-y-4">
+                {/* Tool 1 */}
+                <Link href="/paye" className="group block bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-white w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
+                      <Calculator className="h-5 w-5 text-slate-600 group-hover:text-emerald-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-900 text-sm mb-1 group-hover:text-emerald-700">2026 PAYE Calculator</h4>
+                      <p className="text-slate-500 text-xs leading-relaxed">Calculate net pay, SHIF, Housing Levy & NSSF.</p>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Tool 2 */}
+                <Link href="/sacco-dividends" className="group block bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-white w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
+                      <PieChart className="h-5 w-5 text-slate-600 group-hover:text-emerald-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-900 text-sm mb-1 group-hover:text-emerald-700">SACCO Dividends</h4>
+                      <p className="text-slate-500 text-xs leading-relaxed">Project returns on share capital & deposits.</p>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Tool 3 */}
+                <Link href="/loan-calculator" className="group block bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-white w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
+                      <Landmark className="h-5 w-5 text-slate-600 group-hover:text-emerald-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-900 text-sm mb-1 group-hover:text-emerald-700">Loan Calculator</h4>
+                      <p className="text-slate-500 text-xs leading-relaxed">Compare reducing balance vs flat rate.</p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              
+              <div className="mt-8 pt-6 border-t border-slate-100">
+                 <div className="bg-emerald-600 rounded-xl p-5 text-white text-center shadow-md">
+                   <h4 className="font-bold mb-2">Need Help?</h4>
+                   <p className="text-emerald-100 text-sm mb-4">Our calculators use the latest 2026 Kenyan guidelines.</p>
+                 </div>
+              </div>
             </div>
+          </aside>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {latestNews.map((article) => (
-                <NewsCard key={article.id} article={article} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Features/Cards Section */}
-      <section className="w-full py-20 bg-slate-50 flex-grow">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Everything you need in one place</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-              Our calculators are built with the latest 2026 guidelines, ensuring you get the most accurate deductions and financial projections.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <Link href="/paye" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
-              <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
-                <Calculator className="h-7 w-7 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">2026 NET PAY / PAYE</h3>
-              <p className="text-slate-500 leading-relaxed">
-                Calculate your take-home pay including SHIF, Housing Levy, NSSF, and standard PAYE tax bands automatically.
-              </p>
-            </Link>
-
-            {/* Feature 2 */}
-            <Link href="/sacco-dividends" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
-              <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
-                <PieChart className="h-7 w-7 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">SACCO Dividends</h3>
-              <p className="text-slate-500 leading-relaxed">
-                Project your annual returns based on share capital and deposits with weighted average calculations.
-              </p>
-            </Link>
-
-            {/* Feature 3 */}
-            <Link href="/loan-calculator" className="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all hover:border-emerald-200">
-              <div className="bg-emerald-50 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
-                <Landmark className="h-7 w-7 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Loan Calculator</h3>
-              <p className="text-slate-500 leading-relaxed">
-                Compare reducing balance vs flat rate loans. Generate complete amortization schedules instantly.
-              </p>
-            </Link>
-          </div>
         </div>
-      </section>
-
-      
+      </div>
     </div>
   );
 }
