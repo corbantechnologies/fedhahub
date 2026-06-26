@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   title: {
     template: "%s | FedhaHub Kenya",
-    default: "FedhaHub Kenya | Free 2026 Financial & Tax Calculators",
+    default: "FedhaHub Kenya | Financial News & Tax Calculators",
   },
   description: "Accurate, up-to-date 2026 Kenyan PAYE, SHIF, Housing Levy, SACCO dividends, and loan calculators.",
   keywords: [
