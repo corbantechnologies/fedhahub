@@ -144,6 +144,21 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
             </a>
           </div>
         )}
+
+        {/* Author Bio */}
+        {article.author_name && article.author_bio && (
+          <div className="mt-16 pt-8 border-t border-slate-200">
+            <div className="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-start gap-6">
+              <div className="bg-emerald-100 p-4 rounded-full text-emerald-600 shrink-0">
+                <User className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">About {article.author_name}</h3>
+                <p className="text-slate-600 leading-relaxed">{article.author_bio}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </article>
 
       {/* Related/Other News */}

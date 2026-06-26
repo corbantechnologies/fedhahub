@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title: article.title,
         description: article.brief,
-        url: `/news/${slug}`,
+        url: `https://fedhahub.co.ke/news/${slug}`,
         images: article.image ? [{ url: article.image }] : [],
       },
       twitter: {
