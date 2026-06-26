@@ -114,7 +114,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
         </div>
 
       {/* Article Body */}
-      <article className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+      <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-16">
         {/* Brief / Lead paragraph */}
         <div className="mb-12">
           <p className="text-xl sm:text-xl text-slate-600 font-medium leading-relaxed border-l-4 border-emerald-500 pl-6 italic">
