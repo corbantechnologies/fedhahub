@@ -16,7 +16,7 @@ export default function Home() {
   
   // Get grid news (excluding the featured one)
   const gridNews = featuredArticle 
-    ? publishedNews.filter((n) => n.id !== featuredArticle.id).slice(0, 9) 
+    ? publishedNews.filter((n) => n.id !== featuredArticle.id).slice(0, 8) 
     : [];
 
   return (
@@ -56,7 +56,7 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {gridNews.map((article) => (
                     <NewsCard key={article.id} article={article} />
                   ))}

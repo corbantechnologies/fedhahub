@@ -168,7 +168,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-8 tracking-tight">
               More News {"&"} Insights
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {relatedArticles.map((item) => (
                 <NewsCard key={item.id} article={item} />
               ))}
